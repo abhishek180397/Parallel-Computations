@@ -1,0 +1,10 @@
+#!/bin/bash -l
+#SBATCH -N 1         # adjust the number of nodes per test (e.g. start with 1, 2, ...)
+
+#SBATCH -n 8   # adjust the amount of task as necessary
+#SBATCH -t 00:10:00   # adjust the amount of time as necessary
+#SBATCH -J mpi8
+#SBATCH -o mpi8.%j.stdout
+#SBATCH -e mpi8.%j.error
+#SBATCH -p normal 
+ibrun ./mpi -n 500 -o mpi.txt  # adjust -n here as well

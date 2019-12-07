@@ -1,0 +1,31 @@
+#!/bin/bash -l
+#SBATCH -N 2			  # adjust the number of nodes per test (e.g. start with 1, 2, ...)
+
+#SBATCH -n 24			  # adjust the number of task per test (e.g. start with 1, 2, ...)
+#SBATCH -t 00:20:00		  # adjust the amount of time as necessary
+#SBATCH -J auto-mpi32
+#SBATCH -o auto-mpi32.%j.stdout
+#SBATCH -e auto-mpi32.%j.error
+#SBATCH -p development	
+
+rm mpi.txt
+ibrun -n 1  ./serial -n 5000 -no -s mpi.txt
+ibrun -n 1  ./mpi -p 1 -n 5000 -no -s mpi.txt
+ibrun -n 2  ./mpi -p 2 -n 5000 -no -s mpi.txt
+ibrun -n 4  ./mpi -p 4 -n 5000 -no -s mpi.txt
+ibrun -n 6  ./mpi -p 6 -n 5000 -no -s mpi.txt
+ibrun -n 10  ./mpi -p 10 -n 5000 -no -s mpi.txt
+ibrun -n 12  ./mpi -p 12 -n 5000 -no -s mpi.txt
+ibrun -n 18  ./mpi -p 18 -n 5000 -no -s mpi.txt
+ibrun -n 20  ./mpi -p 20 -n 5000 -no -s mpi.txt
+ibrun -n 24  ./mpi -p 24 -n 5000 -no -s mpi.txt
+ibrun -n 1  ./mpi -p 1 -n 5000 -no -s mpi.txt
+ibrun -n 2  ./mpi -p 2 -n 10000 -no -s mpi.txt
+ibrun -n 4  ./mpi -p 4 -n 20000 -no -s mpi.txt
+ibrun -n 6  ./mpi -p 6 -n 30000 -no -s mpi.txt
+ibrun -n 10  ./mpi -p 10 -n 50000 -no -s mpi.txt
+ibrun -n 12  ./mpi -p 12 -n 60000 -no -s mpi.txt
+ibrun -n 18  ./mpi -p 18 -n 90000 -no -s mpi.txt
+ibrun -n 20  ./mpi -p 20 -n 100000 -no -s mpi.txt
+ibrun -n 24  ./mpi -p 24 -n 120000 -no -s mpi.txt
+./autograder -v mpi -s mpi.txt

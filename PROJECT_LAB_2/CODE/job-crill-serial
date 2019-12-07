@@ -1,0 +1,11 @@
+#!/bin/bash -l
+#SBATCH -N 1          # you'll never need more than 1 node for the serial code
+#SBATCH -t 00:10:00   # adjust the amount of time as necessary
+#SBATCH -J serial
+#SBATCH -o serial.%j.stdout
+#SBATCH -e serial.%j.error
+#SBATCH -p normal 
+#SBATCH -n 1
+ 
+./serial -n 500 -o serial.txt
+
