@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -p gpu
+#SBATCH -A UH-COSC6374-18F-Para
+#SBATCH -t 00:1:00
+#SBATCH -J job-tran
+#SBATCH -o job-tran.o%j.stdout
+#SBATCH -o job-tran.%j.error
+module load cuda
+
+./transpose
