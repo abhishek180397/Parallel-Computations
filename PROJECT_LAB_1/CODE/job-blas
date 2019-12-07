@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -p normal
+#SBATCH -A UH-COSC6374-18F-Para
+#SBATCH -t 00:1:00
+#SBATCH -J job-blas
+#SBATCH -o job-blas.o%j
+
+
+export MKL_NUM_THREADS=1
+./benchmark-blas
